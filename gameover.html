@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Guitar Coleta</title>
+        <link rel="stylesheet" href="index_style.css" />
+        <script>
+            window.onload = function() {
+                var endmusic = document.getElementById('endmusic');
+                endmusic.load(); 
+                endmusic.play();
+            }
+        </script>
+    </head>
+    <body>
+        <div id="content">
+            <audio id="endmusic" src="audio/gameover.wav"></audio>
+            <p id="gameover">Tente Novamente!</p>
+            <p id="start">
+                <a href="index.html" class="button">Menu</a>
+            </p>
+        </div>
+    </body>
+</html>

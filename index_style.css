@@ -1,0 +1,52 @@
+body {
+    background-image: url(images/bg.jpg);
+    background-size: cover;
+    margin: 0px;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+@font-face {
+    font-family: pixelate; 
+    src: url('SFPixelate.ttf') format('truetype');
+}
+
+#content {
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#title {
+    font-family: pixelate; 
+    font-size: 80px;
+    color: rgb(255, 255, 255);
+}
+
+#instructions {
+    font-family: pixelate; 
+    font-size: 25px;
+    color: rgb(93, 18, 95);
+}
+
+a.button {
+    text-decoration: none;
+    font-family: pixelate;
+    font-size: 80px;
+    color: rgb(38, 172, 38);
+}
+
+a.button:hover {
+    transition: 0.5s;
+    font-size: 120px;
+    color: rgb(59, 169, 202);
+}
+
+#gameover {
+    margin: 0px;
+    font-family: pixelate; 
+    font-size: 25px;
+    color: rgb(44, 201, 24);
+}
