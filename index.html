@@ -9,6 +9,18 @@
                 intro.load(); 
                 intro.play();
             }
+
+            function easy(){
+                localStorage.setItem('level', 1);
+            }
+    
+            function medium(){
+                localStorage.setItem('level', 2);
+            }
+    
+            function hard(){
+                localStorage.setItem('level', 3);
+            }
         </script>
     </head>
     <body>
@@ -18,8 +30,13 @@
             <p id="instructions">
                 Pressione as teclas Q, W, E e R para ativar o laser de coleta dos lixos correspondentes.</p>
             <p id="start">
-                <a href="main.html" class="button">Limpar!</a>
+                <a href="main.html" class="button" onclick="easy()">easy</a>
+                <br>
+                <a href="main.html" class="button" onclick="medium()">medium</a>
+                <br>
+                <a href="main.html" class="button" onclick="hard()">hard</a>
             </p>
         </div>
     </body>
+    
 </html>

@@ -13,13 +13,13 @@ var pet = new Image();
 var lata = new Image();
 var keyPressed = '';
 
-maca.src = 'images/apple_trash.png';
+//maca.src = 'images/apple_trash.png';
 banana.src = 'images/banana_trash.png';
 pet.src = 'images/plastic_bottle.png';
 lata.src = 'images/steel_trash.png';
 
 var trashImages = [
-    banana,maca,pet,lata
+    banana,pet,lata
 ];
 
 // inicio de lixo
@@ -37,6 +37,7 @@ function createTrash() {
         height : trashHeight, 
         image : randomImage
     };
+
     trashType.push(randomValue);
     trashes.push(trash);
 }
@@ -56,40 +57,7 @@ function destroyTrash(trash) {
     var index = trashes.indexOf(trash);
     
     if (eventX >= trash.x && eventX <= trash.x + trash.width) {
-        console.log("key Pressed: "+keyPressed+" trash type: "+trashType[index]);
         if(keyPressed == 'BLUE'){
-            if(trashType[index] == 4){
-                score++;
-            }else{
-                if(score == 0){
-                    life--;
-
-                    if(life == 0){
-                        window.location = 'gameover.html';
-                    }
-                }else{
-                    score--;
-                }
-            }
-        }
-
-        if(keyPressed == 'RED'){
-            if(trashType[index] == 2){
-                score++;
-            }else{
-                if(score == 0){
-                    life--;
-
-                    if(life == 0){
-                        window.location = 'gameover.html';
-                    }
-                }else{
-                    score--;
-                }
-            }
-        }
-
-        if(keyPressed == 'YELLOW'){
             if(trashType[index] == 3){
                 score++;
             }else{
@@ -105,8 +73,40 @@ function destroyTrash(trash) {
             }
         }
 
+        if(keyPressed == 'RED'){
+            if(trashType[index] == 1){
+                score++;
+            }else{
+                if(score == 0){
+                    life--;
+
+                    if(life == 0){
+                        window.location = 'gameover.html';
+                    }
+                }else{
+                    score--;
+                }
+            }
+        }
+
+        if(keyPressed == 'YELLOW'){
+            if(trashType[index] == 2){
+                score++;
+            }else{
+                if(score == 0){
+                    life--;
+
+                    if(life == 0){
+                        window.location = 'gameover.html';
+                    }
+                }else{
+                    score--;
+                }
+            }
+        }
+
         if(keyPressed == 'GREEN'){
-            if(trashType[index] == 1 || trashType[index] == 0){
+            if(trashType[index] == 0){
                 score++;        
             }else{
                 if(score == 0){
@@ -120,7 +120,6 @@ function destroyTrash(trash) {
                 }
             }
         }
-            
 
         trashes.splice(index, 1);
         trashType.splice(index,1);
@@ -188,9 +187,23 @@ window.onload = function() {
     bgmusic.play();
     on_resize();
 
+    var gameLevel = localStorage.getItem('level');
+    var gameInterval;
+    if(gameLevel == 1){
+        gameInterval = 3000;
+    }
+
+    if(gameLevel == 2){
+        gameInterval = 2000;
+    }
+
+    if(gameLevel == 3){
+        gameInterval = 1000;
+    }
+
     // Lixos
     setInterval(tickTrash, 10);
-    setInterval(createTrash, 1000);
+    setInterval(createTrash, gameInterval);
     displayStatus();
     createTrash();
     tickTrash();

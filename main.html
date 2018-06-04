@@ -3,13 +3,17 @@
     <head>
         <title>Guitar Coleta</title>
         <link rel="stylesheet" href="main_style.css">
-        <script src="main.js"></script>
+        <script src="main.js">
+            function getLevel(){
+                return localStorage.getItem('level');
+            }
+        </script>
     </head>
     <body>
         <div>
             <audio id="bgmusic" src="audio/pocketgarden.wav"></audio>
             <canvas id="playground" onmousedown="setMousedown(event)"></canvas>
-            <p id="stats"></p>
+            <p id="stats" alt="1"></p>
             <img id="sea" src="images/sea.png">
             
             <img id="yellow_been" src="images/yellow_been.png">
@@ -22,6 +26,5 @@
             <img id="plastic" src="images/plastic_trash.png">
             <img id="glass" src="images/glass_trash.png">
         </div>
-        <script type="text/javascript" src="jquery-collision.min.js"></script>
     </body>
 </html>
