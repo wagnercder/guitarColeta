@@ -2,26 +2,6 @@
     <head>
         <title>Guitar Coleta</title>
         <link rel="stylesheet" href="index_style.css" />
-        <script>
-            window.onload = function() {
-                var intro = document.getElementById('intro');
-                intro.loop = true;
-                intro.load(); 
-                intro.play();
-            }
-
-            function easy(){
-                localStorage.setItem('level', 1);
-            }
-    
-            function medium(){
-                localStorage.setItem('level', 2);
-            }
-    
-            function hard(){
-                localStorage.setItem('level', 3);
-            }
-        </script>
     </head>
     <body>
         <div id="content">
@@ -38,5 +18,24 @@
             </p>
         </div>
     </body>
-    
+    <script>
+        window.onload = function() {
+            var intro = document.getElementById('intro');
+            intro.loop = true;
+            intro.load(); 
+            intro.play();
+        }
+
+        function easy(){
+            localStorage.setItem('level', 1);
+        }
+
+        function medium(){
+            localStorage.setItem('level', 2);
+        }
+
+        function hard(){
+            localStorage.setItem('level', 3);
+        }
+    </script>
 </html>

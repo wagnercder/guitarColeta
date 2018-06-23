@@ -36,34 +36,34 @@ body {
     margin: 15px;
     font-family: pixelate; 
     font-size: 25px;
-    color: white;
+    color:green;
 }
 
 #organic { 
     position: absolute;
     height: 30%;
-    margin-top: 475px;
+    margin-top: 470px;
     right: 900px;
 }
 
 #metal { 
     position: absolute;
     height: 30%;
-    margin-top: 475px;
+    margin-top: 470px;
     right: 720px;
 }
 
 #plastic { 
     position: absolute;
     height: 30%;
-    margin-top: 475px;
+    margin-top: 470px;
     right: 540px;
 }
 
 #glass { 
     position: absolute;
     height: 30%;
-    margin-top: 475px;
+    margin-top: 470px;
     right: 360px;
 }
 

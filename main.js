@@ -12,6 +12,8 @@ var banana = new Image();
 var pet = new Image();
 var lata = new Image();
 var keyPressed = '';
+var hasTrash = false;
+var atualTrash;
 
 //maca.src = 'images/apple_trash.png';
 banana.src = 'images/banana_trash.png';
@@ -24,22 +26,27 @@ var trashImages = [
 
 // inicio de lixo
 function createTrash() {
-    var element = document.getElementById('playground');
-    var randomValue = Math.floor(Math.random() * 4);
-    var randomImage = trashImages[randomValue];
-    var trashWidth = 100;
-    var trashHeight = 100;
-    var startingY = Math.random() * (element.height - randomImage.height - 220);
+    if(!hasTrash){
+        var element = document.getElementById('playground');
+        var randomValue = Math.floor(Math.random() * 3);
+        
+        var randomImage = trashImages[randomValue];
+        var trashWidth = 100;
+        var trashHeight = 100;
+        var startingY = Math.random() * (element.height - randomImage.height - 220);
 
-    var trash = { 
-        x : 0, y : startingY, 
-        width : trashWidth, 
-        height : trashHeight, 
-        image : randomImage
-    };
+        var trash = { 
+            x : 0, y : startingY, 
+            width : trashWidth, 
+            height : trashHeight, 
+            image : randomImage
+        };
 
-    trashType.push(randomValue);
-    trashes.push(trash);
+        trashType.push(randomValue);
+        trashes.push(trash);
+        atualTrash = randomValue;
+        hasTrash = true;
+    }
 }
 
 function drawTrash(trash) {
@@ -58,7 +65,7 @@ function destroyTrash(trash) {
     
     if (eventX >= trash.x && eventX <= trash.x + trash.width) {
         if(keyPressed == 'BLUE'){
-            if(trashType[index] == 3){
+            if(atualTrash == 3){
                 score++;
             }else{
                 if(score == 0){
@@ -74,7 +81,7 @@ function destroyTrash(trash) {
         }
 
         if(keyPressed == 'RED'){
-            if(trashType[index] == 1){
+            if(atualTrash == 1){
                 score++;
             }else{
                 if(score == 0){
@@ -90,7 +97,7 @@ function destroyTrash(trash) {
         }
 
         if(keyPressed == 'YELLOW'){
-            if(trashType[index] == 2){
+            if(atualTrash == 2){
                 score++;
             }else{
                 if(score == 0){
@@ -106,7 +113,7 @@ function destroyTrash(trash) {
         }
 
         if(keyPressed == 'GREEN'){
-            if(trashType[index] == 0){
+            if(atualTrash == 0){
                 score++;        
             }else{
                 if(score == 0){
@@ -124,7 +131,7 @@ function destroyTrash(trash) {
         trashes.splice(index, 1);
         trashType.splice(index,1);
         eventX = -1; eventY = -1;       
-         
+        hasTrash = false;
         displayStatus();
     }
 }
@@ -139,6 +146,7 @@ function detectEdgeCollision(trash) {
             trashes.splice(index, 1);
             life--;
             displayStatus();
+            hasTrash = false;
         }else {
             window.location = 'gameover.html';
         }
@@ -152,7 +160,7 @@ function tickTrash() {
     
     for (var i = 0; i < trashes.length; i++) {
         drawTrash(trashes[i]);
-        destroyTrash(trashes[i]);
+        destroyTrash(trashes[i]);  
         detectEdgeCollision(trashes[i]);
     }
 }
@@ -182,31 +190,33 @@ function on_resize() {
     
 window.onload = function() {
     var bgmusic = document.getElementById('bgmusic');
+
     bgmusic.loop = true;
     bgmusic.load();
     bgmusic.play();
     on_resize();
 
     var gameLevel = localStorage.getItem('level');
-    var gameInterval;
+    var trashSpeed;
+
     if(gameLevel == 1){
-        gameInterval = 3000;
+        trashSpeed = 9;
     }
 
     if(gameLevel == 2){
-        gameInterval = 2000;
+        trashSpeed = 7;
     }
 
     if(gameLevel == 3){
-        gameInterval = 1000;
+        trashSpeed = 5;
     }
 
     // Lixos
-    setInterval(tickTrash, 10);
-    setInterval(createTrash, gameInterval);
+    setInterval(tickTrash, trashSpeed);
+    setInterval(createTrash, 10);
     displayStatus();
-    createTrash();
     tickTrash();
+    createTrash();
 
     document.getElementById('green_been').hidden = true;
     document.getElementById('yellow_been').hidden = true;
